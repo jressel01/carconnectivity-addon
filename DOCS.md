@@ -1,4 +1,4 @@
-# Home Assistant Add-on: CarConnectivity
+# JR Home Assistant Add-on: CarConnectivity
 
 Addon version of Carconnectivity made by Till (see https://github.com/tillsteinbach/CarConnectivity) throught MQTT
 
