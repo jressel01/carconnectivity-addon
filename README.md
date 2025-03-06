@@ -1,4 +1,4 @@
-![GitHub release (with filter)](https://img.shields.io/github/v/release/Pulpyyyy/robonectproxy) ![GitHub](https://img.shields.io/github/license/Pulpyyyy/robonectproxy)
+![GitHub release (with filter)](https://img.shields.io/github/v/release/jressel01/robonectproxy) ![GitHub](https://img.shields.io/github/license/jressel01/robonectproxy)
 
 # Home Assistant Add-on: CarConnectivity
 
