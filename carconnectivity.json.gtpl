@@ -5,6 +5,7 @@
             {
                 "type": "{{ .connector_type }}",
                 "config": {
+                    "brand": "{{ .connector_brand }}",
                     "username": "{{ .connector_username }}",
                     "password": "{{ .connector_password }}",
                     "interval": {{ .connector_interval }},
