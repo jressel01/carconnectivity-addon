@@ -13,6 +13,7 @@ ingress: false
 init: false
 options:
   connector_type: "seatcupra"
+  connector_brand: "seat"
   connector_username: "mail@mail.com"
   connector_password: "password1"
   connector_spin: "1234"
@@ -23,6 +24,7 @@ options:
   log_level: list(info|warning|error|debug)
 schema:
   connector_type: list(seatcupra|skoda|volkswagen|tronity)
+  connector_type: list(seat|cupra)
   connector_username: str
   connector_password: str
   connector_interval: int(60,3600)
