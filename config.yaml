@@ -24,7 +24,7 @@ options:
   log_level: list(info|warning|error|debug)
 schema:
   connector_type: list(seatcupra|skoda|volkswagen|tronity)
-  connector_type: list(seat|cupra)
+  connector_brand: list(seat|cupra)
   connector_username: str
   connector_password: str
   connector_interval: int(60,3600)
