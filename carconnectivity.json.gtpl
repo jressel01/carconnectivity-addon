@@ -67,6 +67,13 @@
                 }
             },
             {
+                "type": "webui",
+                "config": {
+                    "username": "{{ .connector_username_webui }}", // Admin username for login
+                    "password": "{{ .connector_password_webui }}" // Admin password for login
+                }
+            },
+            {
                 "type": "mqtt_homeassistant",
                 "config": {}
             }

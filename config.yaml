@@ -32,6 +32,8 @@ options:
   mqtt_username: "mqtt"
   mqtt_password: "passwordmqtt"
   mqtt_broker: "192.168.1.52"
+  connector_username_webui: ""
+  connector_password_webui: "password"
   log_level: list(info|warning|error|debug)
 schema:
   connector_brand_seatcupra: list(seat|cupra)
@@ -54,4 +56,6 @@ schema:
   mqtt_username: str
   mqtt_password: password
   mqtt_broker: str
+  connector_username_webui: match(^$|^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$)
+  connector_password_webui: password?
   log_level: list(info|warning|error|debug)
