@@ -1,5 +1,5 @@
 name: "CarConnectivity Addon"
-version: "0.2.1"
+version: "0.2.2"
 slug: "carconnectivity-addon"
 description: "Addon version of Carconnectivity made by Till (see https://github.com/tillsteinbach/CarConnectivity) throught MQTT"
 panel_icon: "mdi:car-wireless"
@@ -40,6 +40,7 @@ options:
   connector_username_webui: ""
   connector_password_webui: "password"
   log_level: list(info|warning|error|debug)
+  api_log_level: list(info|warning|error|debug)
 schema:
   connector_brand_seatcupra: list(seat|cupra)
   connector_username_seatcupra: match(^$|^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$)
@@ -64,3 +65,4 @@ schema:
   connector_username_webui: match(^$|^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$)
   connector_password_webui: password?
   log_level: list(info|warning|error|debug)
+  api_log_level: list(info|warning|error|debug)

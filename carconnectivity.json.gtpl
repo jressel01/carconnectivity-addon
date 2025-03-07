@@ -13,7 +13,8 @@
                     "username": "{{ .connector_username_seatcupra }}",
                     "password": "{{ .connector_password_seatcupra }}",
                     "interval": {{ .connector_interval_seatcupra }},
-                    "spin": "{{ .connector_spin_seatcupra }}"
+                    "spin": "{{ .connector_spin_seatcupra }}",
+                    "api_log_level": "{{ .api_log_level }}"
                 }
             }
             {{- end }}
