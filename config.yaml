@@ -1,8 +1,9 @@
 name: "CarConnectivity Addon"
-version: "0.1.7"
+version: "0.1.8"
 slug: "carconnectivity-addon"
 description: "Addon version of Carconnectivity made by Till (see https://github.com/tillsteinbach/CarConnectivity) throught MQTT"
 panel_icon: "mdi:car-wireless"
+webui: "[PROTO:ssl]://[HOST]:[PORT:4000]"
 arch:
   - aarch64
   - amd64
@@ -11,6 +12,10 @@ arch:
   - i386
 ingress: false
 init: false
+ports:
+  4000/tcp: 4000
+ports_description:
+  4000/tcp: TasmoAdmin web interface
 options:
   connector_brand_seatcupra: ""
   connector_username_seatcupra: ""
