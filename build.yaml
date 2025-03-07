@@ -13,9 +13,9 @@ labels:
   org.opencontainers.image.licenses: "Apache License 2.0"
 args:
   TEMPIO_VERSION: "2024.11.2"
-  SEAT_VERSION: "0.1.1"
-  SKODA_VERSION: "0.4.1"
-  VW_VERSION: "0.4.1"
+  SEAT_VERSION: "v0.1.2"
+  SKODA_VERSION: "v0.4.1"
+  VW_VERSION: "v0.4.1"
   TRIONITY_VERSION: "0.3"
-  MQTT_VERSION: "0.4.2"
+  MQTT_VERSION: "v0.4.2"
   MQTTHA_VERSION: "0.1"
