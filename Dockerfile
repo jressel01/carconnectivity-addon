@@ -5,6 +5,7 @@ ARG SEAT_VERSION
 ARG SKODA_VERSION
 ARG VW_VERSION
 ARG TRIONITY_VERSION
+ARG MQTT_VERSION
 ARG MQTTHA_VERSION
 
 ADD carconnectivity.json.gtpl /
@@ -17,6 +18,7 @@ RUN apk add --no-cache python3 py3-pip build-base libffi-dev && \
         carconnectivity-connector-skoda==${SKODA_VERSION} \
         carconnectivity-connector-volkswagen==${VW_VERSION} \
         carconnectivity-connector-tronity==${TRIONITY_VERSION} \
+        carconnectivity-plugin-mqtt==${MQTT_VERSION} \
         carconnectivity-plugin-mqtt_homeassistant==${MQTTHA_VERSION} && \
     mkdir -p /tmp && \
     chmod +x /entrypoint.sh && \
