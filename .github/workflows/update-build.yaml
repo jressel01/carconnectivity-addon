@@ -58,44 +58,44 @@ jobs:
           
       - name: Generate changelog
         run: |
-          echo "### Changelog der Aktualisierungen" > changelog.md
+          echo "### Changelog der Aktualisierungen" > CHANGELOG.md
           
-          echo "- **Carconnectivity_VERSION** → \`${LATEST_CC_VERSION}\`" >> changelog.md
-          echo "- **SEAT_VERSION** → \`${LATEST_SEAT_VERSION}\`" >> changelog.md
-          echo "- **SKODA_VERSION** → \`${LATEST_SKODA_VERSION}\`" >> changelog.md
-          echo "- **VOLKSWAGEN_VERSION** → \`${LATEST_VW_VERSION}\`" >> changelog.md
-          echo "- **TRONITY_VERSION** → \`${LATEST_TRONITY_VERSION}\`" >> changelog.md
-          echo "- **MQTT_VERSION** → \`${LATEST_MQTT_VERSION}\`" >> changelog.md
-          echo "- **MQTT_HOMEASSISTANT_VERSION** → \`${LATEST_MQTT_HOMEASSISTANT_VERSION}\`" >> changelog.md
-          echo "- **WEBUI_VERSION** → \`${LATEST_WEBUI_VERSION}\`" >> changelog.md
-          echo "" >> changelog.md
+          echo "- **Carconnectivity_VERSION** → \`${LATEST_CC_VERSION}\`" >> CHANGELOG.md
+          echo "- **SEAT_VERSION** → \`${LATEST_SEAT_VERSION}\`" >> CHANGELOG.md
+          echo "- **SKODA_VERSION** → \`${LATEST_SKODA_VERSION}\`" >> CHANGELOG.md
+          echo "- **VOLKSWAGEN_VERSION** → \`${LATEST_VW_VERSION}\`" >> CHANGELOG.md
+          echo "- **TRONITY_VERSION** → \`${LATEST_TRONITY_VERSION}\`" >> CHANGELOG.md
+          echo "- **MQTT_VERSION** → \`${LATEST_MQTT_VERSION}\`" >> CHANGELOG.md
+          echo "- **MQTT_HOMEASSISTANT_VERSION** → \`${LATEST_MQTT_HOMEASSISTANT_VERSION}\`" >> CHANGELOG.md
+          echo "- **WEBUI_VERSION** → \`${LATEST_WEBUI_VERSION}\`" >> CHANGELOG.md
+          echo "" >> CHANGELOG.md
 
-          echo "#### 📌 Änderungen seit der letzten Version :" >> changelog.md
+          echo "#### 📌 Änderungen seit der letzten Version :" >> CHANGELOG.md
 
           # Generierung von Logs für jedes Untermodul
-          echo "**SeatCupra** :" >> changelog.md
-          git log --pretty=format:"- %h %s" $(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-connector-seatcupra.git | awk '{print $1}' | tail -n 2 | head -n 1)..HEAD >> changelog.md || echo "Pas de nouvelles modifications" >> changelog.md
+          echo "**SeatCupra** :" >> CHANGELOG.md
+          git log --pretty=format:"- %h %s" $(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-connector-seatcupra.git | awk '{print $1}' | tail -n 2 | head -n 1)..HEAD >> CHANGELOG.md || echo "Pas de nouvelles modifications" >> CHANGELOG.md
 
-          echo "**Skoda** :" >> changelog.md
-          git log --pretty=format:"- %h %s" $(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-connector-skoda.git | awk '{print $1}' | tail -n 2 | head -n 1)..HEAD >> changelog.md || echo "Pas de nouvelles modifications" >> changelog.md
+          echo "**Skoda** :" >> CHANGELOG.md
+          git log --pretty=format:"- %h %s" $(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-connector-skoda.git | awk '{print $1}' | tail -n 2 | head -n 1)..HEAD >> CHANGELOG.md || echo "Pas de nouvelles modifications" >> CHANGELOG.md
 
-          echo "**Volkswagen** :" >> changelog.md
-          git log --pretty=format:"- %h %s" $(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-connector-volkswagen.git | awk '{print $1}' | tail -n 2 | head -n 1)..HEAD >> changelog.md || echo "Pas de nouvelles modifications" >> changelog.md
+          echo "**Volkswagen** :" >> CHANGELOG.md
+          git log --pretty=format:"- %h %s" $(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-connector-volkswagen.git | awk '{print $1}' | tail -n 2 | head -n 1)..HEAD >> CHANGELOG.md || echo "Pas de nouvelles modifications" >> CHANGELOG.md
 
-          echo "**Tronity** :" >> changelog.md
-          git log --pretty=format:"- %h %s" $(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-connector-tronity.git | awk '{print $1}' | tail -n 2 | head -n 1)..HEAD >> changelog.md || echo "Pas de nouvelles modifications" >> changelog.md
+          echo "**Tronity** :" >> CHANGELOG.md
+          git log --pretty=format:"- %h %s" $(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-connector-tronity.git | awk '{print $1}' | tail -n 2 | head -n 1)..HEAD >> CHANGELOG.md || echo "Pas de nouvelles modifications" >> CHANGELOG.md
 
-          echo "**MQTT** :" >> changelog.md
-          git log --pretty=format:"- %h %s" $(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-plugin-mqtt.git | awk '{print $1}' | tail -n 2 | head -n 1)..HEAD >> changelog.md || echo "Pas de nouvelles modifications" >> changelog.md
+          echo "**MQTT** :" >> CHANGELOG.md
+          git log --pretty=format:"- %h %s" $(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-plugin-mqtt.git | awk '{print $1}' | tail -n 2 | head -n 1)..HEAD >> CHANGELOG.md || echo "Pas de nouvelles modifications" >> CHANGELOG.md
 
-          echo "**MQTT HomeAssistant** :" >> changelog.md
-          git log --pretty=format:"- %h %s" $(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-plugin-mqtt_homeassistant.git | awk '{print $1}' | tail -n 2 | head -n 1)..HEAD >> changelog.md || echo "Pas de nouvelles modifications" >> changelog.md
+          echo "**MQTT HomeAssistant** :" >> CHANGELOG.md
+          git log --pretty=format:"- %h %s" $(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-plugin-mqtt_homeassistant.git | awk '{print $1}' | tail -n 2 | head -n 1)..HEAD >> CHANGELOG.md || echo "Pas de nouvelles modifications" >> CHANGELOG.md
 
-          echo "**WEBUI_VERSION** :" >> changelog.md
-          git log --pretty=format:"- %h %s" $(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-plugin-webui.git | awk '{print $1}' | tail -n 2 | head -n 1)..HEAD >> changelog.md || echo "Pas de nouvelles modifications" >> changelog.md
+          echo "**WEBUI_VERSION** :" >> CHANGELOG.md
+          git log --pretty=format:"- %h %s" $(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-plugin-webui.git | awk '{print $1}' | tail -n 2 | head -n 1)..HEAD >> CHANGELOG.md || echo "Pas de nouvelles modifications" >> CHANGELOG.md
 
-          echo "**Carconnectivity_VERSION** :" >> changelog.md
-          git log --pretty=format:"- %h %s" $(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity.git | awk '{print $1}' | tail -n 2 | head -n 1)..HEAD >> changelog.md || echo "Pas de nouvelles modifications" >> changelog.md
+          echo "**Carconnectivity_VERSION** :" >> CHANGELOG.md
+          git log --pretty=format:"- %h %s" $(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity.git | awk '{print $1}' | tail -n 2 | head -n 1)..HEAD >> CHANGELOG.md || echo "Pas de nouvelles modifications" >> CHANGELOG.md
 
 
       - name: Update build.yaml
@@ -137,5 +137,5 @@ jobs:
 
             ---
             ## Changelog 📜
-            $(cat changelog.md)
+            $(cat CHANGELOG.md)
           base: main
