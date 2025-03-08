@@ -52,10 +52,15 @@ jobs:
           LATEST_WEBUI_VERSION=$(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-plugin-webui.git | awk '{print $2}' | grep -Eo 'v[0-9]+.[0-9]+.[0-9]+' | sort -V | tail -n 1)
           echo "LATEST_WEBUI_VERSION=$LATEST_WEBUI_VERSION" >> $GITHUB_ENV
           
+          # Carconnectivity
+          LATEST_WEBUI_VERSION=$(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity.git | awk '{print $2}' | grep -Eo 'v[0-9]+.[0-9]+.[0-9]+' | sort -V | tail -n 1)
+          echo "LATEST_CC_VERSION=$LATEST_CC_VERSION" >> $GITHUB_ENV
+          
       - name: Generate changelog
         run: |
-          echo "### Changelog des mises à jour" > changelog.md
+          echo "### Changelog der Aktualisierungen" > changelog.md
           
+          echo "- **Carconnectivity_VERSION** → \`${LATEST_CC_VERSION}\`" >> changelog.md
           echo "- **SEAT_VERSION** → \`${LATEST_SEAT_VERSION}\`" >> changelog.md
           echo "- **SKODA_VERSION** → \`${LATEST_SKODA_VERSION}\`" >> changelog.md
           echo "- **VOLKSWAGEN_VERSION** → \`${LATEST_VW_VERSION}\`" >> changelog.md
@@ -65,9 +70,9 @@ jobs:
           echo "- **WEBUI_VERSION** → \`${LATEST_WEBUI_VERSION}\`" >> changelog.md
           echo "" >> changelog.md
 
-          echo "#### 📌 Modifications depuis la dernière version :" >> changelog.md
+          echo "#### 📌 Änderungen seit der letzten Version :" >> changelog.md
 
-          # Génération des logs pour chaque sous-module
+          # Generierung von Logs für jedes Untermodul
           echo "**SeatCupra** :" >> changelog.md
           git log --pretty=format:"- %h %s" $(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-connector-seatcupra.git | awk '{print $1}' | tail -n 2 | head -n 1)..HEAD >> changelog.md || echo "Pas de nouvelles modifications" >> changelog.md
 
@@ -89,9 +94,13 @@ jobs:
           echo "**WEBUI_VERSION** :" >> changelog.md
           git log --pretty=format:"- %h %s" $(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-plugin-webui.git | awk '{print $1}' | tail -n 2 | head -n 1)..HEAD >> changelog.md || echo "Pas de nouvelles modifications" >> changelog.md
 
+          echo "**Carconnectivity_VERSION** :" >> changelog.md
+          git log --pretty=format:"- %h %s" $(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity.git | awk '{print $1}' | tail -n 2 | head -n 1)..HEAD >> changelog.md || echo "Pas de nouvelles modifications" >> changelog.md
+
+
       - name: Update build.yaml
         run: |
-          echo "Mise à jour de build.yaml avec les nouvelles versions"
+          echo "Aktualisieren von build.yaml mit neuen Versionen"
           sed -i "s/SEAT_VERSION: .*/SEAT_VERSION: \"${LATEST_SEAT_VERSION}\"/" build.yaml
           sed -i "s/SKODA_VERSION: .*/SKODA_VERSION: \"${LATEST_SKODA_VERSION}\"/" build.yaml
           sed -i "s/VW_VERSION: .*/VW_VERSION: \"${LATEST_VW_VERSION}\"/" build.yaml
@@ -99,12 +108,13 @@ jobs:
           sed -i "s/MQTT_VERSION: .*/MQTT_VERSION: \"${LATEST_MQTT_VERSION}\"/" build.yaml
           sed -i "s/MQTT_HOMEASSISTANT_VERSION: .*/MQTT_HOMEASSISTANT_VERSION: \"${LATEST_MQTT_HOMEASSISTANT_VERSION}\"/" build.yaml
           sed -i "s/WEBUI_VERSION: .*/WEBUI_VERSION: \"${LATEST_WEBUI_VERSION}\"/" build.yaml
+          sed -i "s/CC_VERSION: .*/CC_VERSION: \"${LATEST_CC_VERSION}\"/" build.yaml
 
       - name: Commit and push changes
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
-          git commit -am "Mise à jour des versions : SEAT, SKODA, VOLKSWAGEN, TRONITY, MQTT, MQTT_HOMEASSISTANT"
+          git commit -am "Aktualisieren von Versionen: CC, SEAT, SKODA, VOLKSWAGEN, TRONITY, MQTT, MQTT_HOMEASSISTANT"
           git push origin HEAD:update-versions-${LATEST_SEAT_VERSION}-${LATEST_SKODA_VERSION}
 
       - name: Create Pull Request
@@ -112,10 +122,11 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: update-versions-${LATEST_SEAT_VERSION}-${LATEST_SKODA_VERSION}
-          title: "Mise à jour des versions"
+          title: "Aktualisieren von Versionen"
           body: |
-            Automatiquement généré par GitHub Actions.
+            Automatisch generiert von GitHub Actions.
 
+            - **Carconnectivity_VERSION** → `${LATEST_CC_VERSION}`
             - **SEAT_VERSION** → `${LATEST_SEAT_VERSION}`
             - **SKODA_VERSION** → `${LATEST_SKODA_VERSION}`
             - **VW_VERSION** → `${LATEST_VW_VERSION}`
