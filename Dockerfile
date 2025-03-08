@@ -8,6 +8,7 @@ ARG TRIONITY_VERSION
 ARG MQTT_VERSION
 ARG MQTTHA_VERSION
 ARG WEBUI_VERSION
+ARG CC_VERSION
 
 WORKDIR /tmp/
 ADD carconnectivity.json.gtpl .
@@ -18,10 +19,12 @@ RUN apk add --no-cache python3 py3-pip build-base libffi-dev && \
     /opt/venv/bin/pip install --upgrade pip --no-cache && \
     /opt/venv/bin/pip install --no-cache carconnectivity-connector-seatcupra==${SEAT_VERSION} \
         carconnectivity-connector-skoda==${SKODA_VERSION} \
+        carconnectivity==${CC_VERSION} \
         carconnectivity-connector-volkswagen==${VW_VERSION} \
         carconnectivity-connector-tronity==${TRIONITY_VERSION} \
         carconnectivity-plugin-webui==${WEBUI_VERSION} \
         carconnectivity-plugin-mqtt_homeassistant==${MQTTHA_VERSION} && \
+    echo "Carconnectivity_VERSION=${CC_VERSION}" > versions.txt && \
     echo "SEAT_VERSION=${SEAT_VERSION}" > versions.txt && \
     echo "SKODA_VERSION=${SKODA_VERSION}" >> versions.txt && \
     echo "VW_VERSION=${VW_VERSION}" >> versions.txt && \
