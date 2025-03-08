@@ -25,35 +25,35 @@ jobs:
       - name: Get latest versions of submodules
         run: |
           # SEAT
-          LATEST_SEAT_VERSION=$(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-connector-seatcupra.git | awk '{print $2}' | grep -Eo 'v[0-9]+.[0-9]+.[0-9]+' | sort -V | tail -n 1)
+          LATEST_SEAT_VERSION=$(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-connector-seatcupra.git | awk '{print $2}' | grep -Eo 'v[0-9]+.[0-9]+.[0-9]+' | sort -V | tail -n 1 | sed 's/^v//')
           echo "LATEST_SEAT_VERSION=$LATEST_SEAT_VERSION" >> $GITHUB_ENV
           
           # SKODA
-          LATEST_SKODA_VERSION=$(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-connector-skoda.git | awk '{print $2}' | grep -Eo 'v[0-9]+.[0-9]+.[0-9]+' | sort -V | tail -n 1)
+          LATEST_SKODA_VERSION=$(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-connector-skoda.git | awk '{print $2}' | grep -Eo 'v[0-9]+.[0-9]+.[0-9]+' | sort -V | tail -n 1 | sed 's/^v//')
           echo "LATEST_SKODA_VERSION=$LATEST_SKODA_VERSION" >> $GITHUB_ENV
 
           # VOLKSWAGEN
-          LATEST_VW_VERSION=$(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-connector-volkswagen.git | awk '{print $2}' | grep -Eo 'v[0-9]+.[0-9]+.[0-9]+' | sort -V | tail -n 1)
+          LATEST_VW_VERSION=$(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-connector-volkswagen.git | awk '{print $2}' | grep -Eo 'v[0-9]+.[0-9]+.[0-9]+' | sort -V | tail -n 1 | sed 's/^v//')
           echo "LATEST_VW_VERSION=$LATEST_VW_VERSION" >> $GITHUB_ENV
 
           # TRONITY
-          LATEST_TRONITY_VERSION=$(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-connector-tronity.git | awk '{print $2}' | grep -Eo 'v[0-9]+.[0-9]+.[0-9]+' | sort -V | tail -n 1)
+          LATEST_TRONITY_VERSION=$(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-connector-tronity.git | awk '{print $2}' | grep -Eo 'v[0-9]+.[0-9]+.[0-9]+' | sort -V | tail -n 1 | sed 's/^v//')
           echo "LATEST_TRONITY_VERSION=$LATEST_TRONITY_VERSION" >> $GITHUB_ENV
 
           # MQTT
-          LATEST_MQTT_VERSION=$(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-plugin-mqtt.git | awk '{print $2}' | grep -Eo 'v[0-9]+.[0-9]+.[0-9]+' | sort -V | tail -n 1)
+          LATEST_MQTT_VERSION=$(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-plugin-mqtt.git | awk '{print $2}' | grep -Eo 'v[0-9]+.[0-9]+.[0-9]+' | sort -V | tail -n 1 | sed 's/^v//')
           echo "LATEST_MQTT_VERSION=$LATEST_MQTT_VERSION" >> $GITHUB_ENV
 
           # MQTT Home Assistant
-          LATEST_MQTT_HOMEASSISTANT_VERSION=$(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-plugin-mqtt_homeassistant.git | awk '{print $2}' | grep -Eo 'v[0-9]+.[0-9]+.[0-9]+' | sort -V | tail -n 1)
+          LATEST_MQTT_HOMEASSISTANT_VERSION=$(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-plugin-mqtt_homeassistant.git | awk '{print $2}' | grep -Eo 'v[0-9]+.[0-9]+.[0-9]+' | sort -V | tail -n 1 | sed 's/^v//')
           echo "LATEST_MQTT_HOMEASSISTANT_VERSION=$LATEST_MQTT_HOMEASSISTANT_VERSION" >> $GITHUB_ENV
 
           # WebUI Home Assistant
-          LATEST_WEBUI_VERSION=$(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-plugin-webui.git | awk '{print $2}' | grep -Eo 'v[0-9]+.[0-9]+.[0-9]+' | sort -V | tail -n 1)
+          LATEST_WEBUI_VERSION=$(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity-plugin-webui.git | awk '{print $2}' | grep -Eo 'v[0-9]+.[0-9]+.[0-9]+' | sort -V | tail -n 1 | sed 's/^v//')
           echo "LATEST_WEBUI_VERSION=$LATEST_WEBUI_VERSION" >> $GITHUB_ENV
           
           # Carconnectivity
-          LATEST_WEBUI_VERSION=$(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity.git | awk '{print $2}' | grep -Eo 'v[0-9]+.[0-9]+.[0-9]+' | sort -V | tail -n 1)
+          LATEST_CC_VERSION=$(git ls-remote --tags https://github.com/tillsteinbach/CarConnectivity.git | awk '{print $2}' | grep -Eo 'v[0-9]+.[0-9]+.[0-9]+' | sort -V | tail -n 1 | sed 's/^v//')
           echo "LATEST_CC_VERSION=$LATEST_CC_VERSION" >> $GITHUB_ENV
           
       - name: Generate changelog
@@ -67,10 +67,13 @@ jobs:
           echo "- **TRONITY_VERSION** → \`${LATEST_TRONITY_VERSION}\`" >> CHANGELOG.md
           echo "- **MQTT_VERSION** → \`${LATEST_MQTT_VERSION}\`" >> CHANGELOG.md
           echo "- **MQTT_HOMEASSISTANT_VERSION** → \`${LATEST_MQTT_HOMEASSISTANT_VERSION}\`" >> CHANGELOG.md
+
           echo "- **WEBUI_VERSION** → \`${LATEST_WEBUI_VERSION}\`" >> CHANGELOG.md
           echo "" >> CHANGELOG.md
 
+
           echo "#### 📌 Änderungen seit der letzten Version :" >> CHANGELOG.md
+
 
           # Generierung von Logs für jedes Untermodul
           echo "**SeatCupra** :" >> CHANGELOG.md
@@ -100,6 +103,7 @@ jobs:
 
       - name: Update build.yaml
         run: |
+
           echo "Aktualisieren von build.yaml mit neuen Versionen"
           sed -i "s/SEAT_VERSION: .*/SEAT_VERSION: \"${LATEST_SEAT_VERSION}\"/" build.yaml
           sed -i "s/SKODA_VERSION: .*/SKODA_VERSION: \"${LATEST_SKODA_VERSION}\"/" build.yaml
@@ -122,8 +126,10 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: update-versions-${LATEST_SEAT_VERSION}-${LATEST_SKODA_VERSION}
+
           title: "Aktualisieren von Versionen"
           body: |
+
             Automatisch generiert von GitHub Actions.
 
             - **Carconnectivity_VERSION** → `${LATEST_CC_VERSION}`
@@ -137,5 +143,6 @@ jobs:
 
             ---
             ## Changelog 📜
+
             $(cat CHANGELOG.md)
           base: main
