@@ -122,7 +122,7 @@ jobs:
           git push origin HEAD:update-versions-${LATEST_SEAT_VERSION}-${LATEST_SKODA_VERSION}
 
       - name: Create Pull Request
-        uses: jressel01/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: update-versions-${LATEST_SEAT_VERSION}-${LATEST_SKODA_VERSION}
