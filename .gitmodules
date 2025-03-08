@@ -19,3 +19,6 @@
 [submodule "CarConnectivity-plugin-webui"]
 	path = CarConnectivity-plugin-webui
 	url = https://github.com/tillsteinbach/CarConnectivity-plugin-webui
+[submodule "CarConnectivity"]
+	path = CarConnectivity
+	url = https://github.com/tillsteinbach/CarConnectivity
