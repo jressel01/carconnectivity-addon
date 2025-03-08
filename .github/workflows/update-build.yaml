@@ -119,13 +119,13 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
           git commit -am "Aktualisieren von Versionen: CC, SEAT, SKODA, VOLKSWAGEN, TRONITY, MQTT, MQTT_HOMEASSISTANT"
-          git push origin HEAD:update-versions-${LATEST_SEAT_VERSION}-${LATEST_SKODA_VERSION}
+          git push origin HEAD:update-versions-${LATEST_SEAT_VERSION}
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: update-versions-${LATEST_SEAT_VERSION}-${LATEST_SKODA_VERSION}
+          branch: update-versions-${LATEST_SEAT_VERSION}
 
           title: "Aktualisieren von Versionen"
           body: |
